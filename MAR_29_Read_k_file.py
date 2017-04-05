@@ -64,7 +64,7 @@ def readKfile(fname):
     return elem,nodes
     
 if __name__ =='__main__':
-    fname='target_mesh.k'
+    fname='modelt.k'
     solid,node,end,length=getStarposition(fname)
     elem=getElems(fname,solid+1,length-node)
     nodes=getNodes(fname,node+1,1)
