@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import mpl_toolkits.mplot3d as a3
 
+import os
+
+
 def getStarposition(fname):
     data=open(fname).readlines()
     solid,node,end,length=0,0,0,len(data)
@@ -26,7 +29,7 @@ def getStarposition(fname):
         elif line.startswith("*"):
             iend[ii]=i
             ii=2
-    print iend
+    print(iend)
     return (solid,node,end,length)
 
 def getStars(fname):
@@ -64,10 +67,10 @@ def readKfile(fname):
     return elem,nodes
     
 if __name__ =='__main__':
-    fname='modelt.k'
-    solid,node,end,length=getStarposition(fname)
-    elem=getElems(fname,solid+1,length-node)
-    nodes=getNodes(fname,node+1,1)
-    
+    root_dir = os.path.abspath(os.path.dirname(__file__))
+
+    fname=os.path.join(root_dir, "..", "test_data", "beer_can.k")
+    elem, nodes = readKfile(fname)
+    plotNodes(nodes)
 
 #a[~np.isnan(a).any(axis=1)]
